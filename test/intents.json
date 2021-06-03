@@ -1,0 +1,37 @@
+{"intents": [
+    {"tag": "greeting",
+     "patterns": ["Hi", "Apa kabar?", "Apakah ada orang?", "Hello", "Whats up bro?","Hey, whats up?","Hai","Halo"],
+     "responses": ["Hai, terimakasih sudah mau chat bersama saya", "Senang berjumpa dengan kamu lagi", "Hai, ada yang bisa saya bantu?","Hai sobat, lagi ada masalah?","Hai, senang sekali bisa chat dengan kamu. Ada yang bisa saya bantu?","Hai juga, Bagaimana dengan hari ini?"],
+     "context_set": ""
+    },
+    {"tag": "goodbye",
+     "patterns": ["Sampai jumpa", "Sampai jumpa lagi", "Dadah","Sudah dulu ya","Selesai obrolan"],
+     "responses": ["Sampai jumpa lagi, terimakasih sudah mau chat", "Semoga harimu Indah", "Sampai jumpa, chat dengan saya lagi yaa","Dadah, senang bisa chatting dengan kamu","Terimakasih sudah chatting dengan saya, selamat beraktivitas!!"]
+    },
+    {"tag": "thanks",
+     "patterns": ["Terimakasih", "Terima Kasih Banyak", "Itu Sangat Membantu","Terimakasih sudah membantu","Makasih","Thanks","Makasih sudah membantu"],
+     "responses": ["Senang Membantu kamu!!", "Sama sama, ada yang bisa dibantu lagi?", "Dengan senang hati","Tidak masalah, sudah seharusnya saya membantu","Sama - sama semoga harimu menyenangkan "]
+    },
+    {"tag": "perkenalan",
+        "patterns": ["Nama kamu siapa?", "Kamu siapa?", "Perkenalkan diri kamu","Boleh kenalan dengan kamu?","Siapa nama kamu?"],
+        "responses": ["Hai, saya Zassy. Chatbot pribadi untuk membantu kamu mendapatkan hari yang indah", "Saya chatbot bernama Zassy untuk membantu kamu meraih hari yang indah", "Kamu belum mengenal saya? saya chatbot pribadi kamu bernama Zassy. Saya membantu agar kamu menjalani hari dengan senang","Kita belum kenalan? oke deh. Saya Zassy, chatbot pribadi kamu"]
+       },
+    {"tag": "kosong",
+        "patterns": ["", " "],
+        "responses": ["Saya tidak mengerti pesan anda", "Bisa anda perjelas pesan anda", "Sepertinya kamu belum mengetik, bisa jelaskan pesannya kesaya?","Pesan kamu sepertinya kosong"]
+       },
+    {"tag": "moodbaik",
+        "patterns": ["bahagia","bersyukur","lagi senang aja hari ini","ceria","Antusias","lagi percaya diri", "I’m feel good","Semangat", "Akhirnya, aku bisa liburan juga!", "Yes, aku bisa menyelesaikan tugasku!"],
+        "responses": ["wah, kamu terlihat cerah dan senang hari ini. Apa yang membuat kamu senang?", "syukur, sepertinya kamu senang hari ini. Mau ceritain ke aku apa yang bikin kamu senang?", "wah syukurlah, semoga terjadi hal baik kepadamu. Boleh sharing ke aku hal apa yang bikin kamu senang?"]
+       },
+       {"tag": "moodburuk",
+        "patterns": ["stress banget", "overthinking" ,"capek banget"," ingin nyerah rasanya", "galau"," aku ingin nangis","Kesel banget","Terserah", "hari ini banyak banget kegiatan jadi kurang tidur","lagi ga bersemangat"],
+        "responses": ["sepertinya kamu lagi badmood, ada yang bisa aku bantu?", "Mau mendengar lelucon dari aku?", "usahan jangan terlalu stress ya, refreshing sebentar mungkin bisa jadi moodbooster kamu", "hey, kamu gapapa? Bisa ceritakan ke aku?", "Kenapa bisa badmood? Bisa ceritain ke aku?"]
+    },
+    {"tag": "jokes",
+        "patterns": ["mau dengerin jokes", "jokes", "lelucon","Hal yang lucu"],
+        "responses": ["kenapa cicak mutusin ekornya tiba-tiba? Kan bisa dibicarain baik baik","Kenapa kalo zombie nyerangnya bareng? Kalo sendiri Namanya zomblo","kalo semua hal harus dipikirkan masak-masak, gimana coba nasib orang-orang yang gabisa masak"]       
+    }
+        
+]
+}
