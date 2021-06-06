@@ -12,13 +12,16 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.hpdev.bangkitcapstone.R
 import com.hpdev.bangkitcapstone.data.MessageEntity
-import com.hpdev.bangkitcapstone.ui.messages.MessageItemUi.Companion.TYPE_FRIEND_MESSAGE
-import com.hpdev.bangkitcapstone.ui.messages.MessageItemUi.Companion.TYPE_MY_MESSAGE
 import kotlin.collections.ArrayList
 
 
 class MessageListAdapter : RecyclerView.Adapter<MessageViewHolder<MessageEntity>>() {
     private var listMessages = ArrayList<MessageEntity>()
+
+    companion object {
+        const val TYPE_MY_MESSAGE = 0
+        const val TYPE_FRIEND_MESSAGE = 1
+    }
 
     fun setMessages(messages: List<MessageEntity>?) {
         if (messages == null) return
@@ -82,11 +85,11 @@ class MessageListAdapter : RecyclerView.Adapter<MessageViewHolder<MessageEntity>
             val dayString = DateFormat.format("hh:mm", item.createdAt)
 
             timeText.text = dayString
-            nameText.text = item.sender.nickname
+            nameText.text = item.nickname
 
             // Insert the profile image from the URL into the ImageView
             Glide.with(itemView.context)
-                .load(item.sender.profileUrl)
+                .load(item.profileUrl)
                 .apply(
                         RequestOptions.placeholderOf(R.drawable.ic_baseline_refresh_24)
                                 .error(R.drawable.ic_baseline_error_24))

@@ -43,6 +43,7 @@ class MainActivity : AppCompatActivity() {
         return when (item.itemId) {
             R.id.menu1 -> {
                 val i = Intent(this, ChannelActivity::class.java)
+                i.putExtra(ChannelActivity.EXTRA_IS_CHATBOT, true)
                 startActivity(i)
                 true
             }

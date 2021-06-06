@@ -2,7 +2,11 @@ package com.hpdev.bangkitcapstone.data
 
 data class MessageEntity (
     val message: String,
-    val sender: UserEntity,
     val createdAt: Long,
-    val type: Int
+    val type: Int,
+
+    // userData
+    val userId: String,
+    val nickname: String,
+    val profileUrl: String
 )
