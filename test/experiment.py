@@ -36,3 +36,5 @@
 #                 if show_details:
 #                     print ("found in bag: %s" % w)
 #     return(np.array(bag))
+
+# terlalu banyak di rumah membuat saya jarang bersosialisasi dengan orang, dan

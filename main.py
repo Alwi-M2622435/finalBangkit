@@ -1,4 +1,5 @@
 import os
+import string
 from os import path
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
@@ -8,8 +9,12 @@ import numpy as np
 import random
 import pandas as pd
 import nltk
-from nltk.stem.lancaster import LancasterStemmer
-stemmer = LancasterStemmer()
+# from nltk.stem.lancaster import LancasterStemmer
+# stemmer = LancasterStemmer()
+from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
+from nltk.tokenize import word_tokenize
+factory = StemmerFactory()
+stemmer = factory.create_stemmer()
 
 #Other
 import json
@@ -63,7 +68,9 @@ def response(sentence, show_details=False):
 
     # tokenize kata
     global data
-    sentence_words = nltk.word_tokenize(sentence)
+    sentence = sentence.translate(str.maketrans('', '', string.punctuation)).lower()
+    sentence_words = word_tokenize(sentence)
+    # sentence_words = nltk.word_tokenize(sentence)
 
     # kata disteeming, ambil huruf pentingnya
     sentence_words = [stemmer.stem(word.lower()) for word in sentence_words]

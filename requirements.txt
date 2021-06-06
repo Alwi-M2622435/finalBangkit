@@ -9,3 +9,5 @@ nltk==3.6.2
 pickle-mixin==1.0.2
 jsonify==0.5
 jsonschema==3.2.0
+PySastrawi==1.2.0
+Sastrawi==1.0.1

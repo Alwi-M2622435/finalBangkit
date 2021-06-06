@@ -1,4 +1,6 @@
 #import library
+import string
+
 import tensorflow as tf
 import numpy as np
 import tflearn
@@ -7,8 +9,12 @@ import pandas as pd
 
 #Used to for Contextualisation and Other NLP Tasks.
 import nltk
-from nltk.stem.lancaster import LancasterStemmer
-stemmer = LancasterStemmer()
+# from nltk.stem.lancaster import LancasterStemmer
+# stemmer = LancasterStemmer()
+from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
+from nltk.tokenize import sent_tokenize, word_tokenize
+factory = StemmerFactory()
+stemmer = factory.create_stemmer()
 
 #Other
 import json
@@ -21,10 +27,10 @@ warnings.filterwarnings("ignore")
 print(tf.__version__)
 
 print("Processing the Intents.....")
-with open('intents.json') as json_data:
+with open('../intents.json') as json_data:
     intents = json.load(json_data)
 
-nltk.download('punkt')
+# nltk.download('punkt')
 words = []
 classes = []
 documents = []
@@ -33,7 +39,8 @@ print("Looping through the Intents to Convert them to words, classes, documents 
 for intent in intents['intents']:
     for pattern in intent['patterns']:
         # tokenize each word in the sentence
-        w = nltk.word_tokenize(pattern)
+        pattern = pattern.translate(str.maketrans('', '', string.punctuation)).lower()
+        w = word_tokenize(pattern)
         # add to our words list
         words.extend(w)
         # add to documents in our corpus
@@ -104,7 +111,7 @@ model = tf.keras.models.Sequential([
 sgd = SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True)
 model.compile(loss='categorical_crossentropy', optimizer=sgd, metrics=['accuracy'])
 hist = model.fit(tf.constant(train_x), tf.constant(train_y),
-                 epochs=300, batch_size=32, verbose=1,
+                 epochs=500, batch_size=32, verbose=1,
                 steps_per_epoch=20)
 model.save('../model.h5', hist)
 model.save('model.tflearn', hist)
@@ -152,7 +159,9 @@ output_details = interpreter.get_output_details()[0]['index']
 
 def clean_up_sentence(sentence):
     # It Tokenize or Break it into the constituents parts of Sentense.
-    sentence_words = nltk.word_tokenize(sentence)
+    sentence = sentence.translate(str.maketrans('', '', string.punctuation)).lower()
+    sentence_words = word_tokenize(sentence)
+    # sentence_words = nltk.word_tokenize(sentence)
 #     print(sentence_words)
     # Stemming means to find the root of the word.
     sentence_words = [stemmer.stem(word.lower()) for word in sentence_words]
