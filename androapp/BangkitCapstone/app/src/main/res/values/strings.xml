@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Mental Health Assistant</string>
+    <string name="desc_image_splash">Splash screen image</string>
+    <string name="title_activity_main">Curhad App</string>
+
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+
+    <string name="title_profile">Profile</string>
+    <string name="title_messages">Messages</string>
+
+    <string name="this_fragment">Ini adalah menu fragment</string>
+
+    <string name="menu_1">Chatbot</string>
+    <string name="menu_2">Notifikasi</string>
+    <string name="menu_3">Logout</string>
+    <string name="text_time">8:00</string>
+    <string name="text_message">Message</string>
+    <string name="text_name">Hendry Prasetya</string>
+    <string name="cd_user_icon">User Icon</string>
+    <string name="text_date">June 10</string>
+    <string name="enter_message">Enter Message</string>
+    <string name="send_message">Send</string>
+    <string name="text_time2">10:00</string>
+    <string name="text_example_message">This is a Message</string>
+</resources>
