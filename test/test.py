@@ -7,6 +7,6 @@ import requests
 url = "https://getresponse-4abxtq7oia-as.a.run.app/"
 # url = "http://localhost:5000/"
 
-resp = requests.post(url, data ={"chat": "tugas sudah selesai"})
+resp = requests.post(url, data ={"chat": "stress banget"})
 
 print(resp.json())
