@@ -5,7 +5,7 @@ data class MessageEntity (
     val createdAt: Long,
     val type: Int,
 
-    // userData
+    // sender data
     val userId: String,
     val nickname: String,
     val profileUrl: String

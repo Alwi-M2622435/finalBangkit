@@ -24,4 +24,18 @@ object DatabaseContract {
                 .build()
         }
     }
+
+    internal class UserColumns : BaseColumns {
+        companion object {
+            const val TABLE_NAME = "users"
+            const val _ID = "_id"
+            const val NICKNAME = "nickname"
+            const val PROFILE_URL = "profile_url"
+
+            val CONTENT_URI: Uri = Uri.Builder().scheme(SCHEME)
+                .authority(AUTHORITY)
+                .appendPath(TABLE_NAME)
+                .build()
+        }
+    }
 }

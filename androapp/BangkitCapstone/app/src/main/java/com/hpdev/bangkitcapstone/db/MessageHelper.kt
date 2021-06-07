@@ -40,7 +40,7 @@ class MessageHelper(context: Context) {
     }
 
     fun getAllData(): ArrayList<MessageEntity> {
-        val cursor = database.query(TABLE_NAME, null, null, null, null, null, "$USER_ID ASC", null)
+        val cursor = database.query(TABLE_NAME, null, null, null, null, null, "$CREATED_AT ASC", null)
         cursor.moveToFirst()
         val messageList = ArrayList<MessageEntity>()
         var message: MessageEntity
@@ -63,20 +63,11 @@ class MessageHelper(context: Context) {
         return messageList
     }
 
-    fun getByUserId(userId: String): MessageEntity {
-        val cursor = queryByUserId(userId)
-
-        // init default message
-        var message = MessageEntity(
-            message = "",
-            createdAt = 0,
-            type = 0,
-
-            userId = "",
-            nickname = "",
-            profileUrl = ""
-        )
-
+    fun getByUserId(userId: String): ArrayList<MessageEntity> {
+        val cursor = database.query(TABLE_NAME, null, "$USER_ID = ?", arrayOf(userId), null, null, "$CREATED_AT ASC", null)
+        cursor.moveToFirst()
+        val messageList = ArrayList<MessageEntity>()
+        var message: MessageEntity
         if (cursor.count > 0) {
             do {
                 message = MessageEntity(
@@ -86,14 +77,14 @@ class MessageHelper(context: Context) {
 
                     userId = cursor.getString(cursor.getColumnIndexOrThrow(USER_ID)),
                     nickname = cursor.getString(cursor.getColumnIndexOrThrow(NICKNAME)),
-                    profileUrl = cursor.getString(cursor.getColumnIndexOrThrow(PROFILE_URL))
+                    profileUrl = cursor.getString(cursor.getColumnIndexOrThrow(PROFILE_URL)),
                 )
+                messageList.add(message)
                 cursor.moveToNext()
             } while (!cursor.isAfterLast)
         }
         cursor.close()
-
-        return message
+        return messageList
     }
 
     fun queryByUserId(userId: String): Cursor {
