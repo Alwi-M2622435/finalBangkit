@@ -7,6 +7,6 @@
             android:icon = "@drawable/ic_baseline_notifications_24_white"
             app:showAsAction="ifRoom" />
         <item android:id="@+id/menu3"
-            android:title="@string/menu_2" />
+            android:title="@string/menu_3" />
     </group>
 </menu>
