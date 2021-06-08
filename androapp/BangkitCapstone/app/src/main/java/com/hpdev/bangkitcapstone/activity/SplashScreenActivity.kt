@@ -5,11 +5,15 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.widget.Toast
 import com.hpdev.bangkitcapstone.R
-
-private const val SPLASH_DELAY = 2000L
+import com.hpdev.bangkitcapstone.data.UserEntity
+import com.hpdev.bangkitcapstone.db.UserHelper
+import java.lang.Exception
 
 class SplashScreenActivity : AppCompatActivity() {
+    private var splashDelay = 2000L
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_screen)
@@ -18,6 +22,6 @@ class SplashScreenActivity : AppCompatActivity() {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
-        }, SPLASH_DELAY)
+        }, splashDelay)
     }
 }

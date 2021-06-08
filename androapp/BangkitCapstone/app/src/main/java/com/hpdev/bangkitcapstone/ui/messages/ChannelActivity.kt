@@ -17,7 +17,7 @@ class ChannelActivity : AppCompatActivity() {
 
     companion object {
         const val EXTRA_CHANNEL_USER_ID = "extra_channel_user_id"
-        const val CHATBOT_USER_ID = "0"
+        const val CHATBOT_USER_ID = 0
     }
 
     private val messageList = ArrayList<MessageEntity>()
@@ -28,9 +28,12 @@ class ChannelActivity : AppCompatActivity() {
         binding = ActivityChannelBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // check if db initialized
+        checkAndInitDB()
+
         val extras = intent.extras
         if (extras != null) {
-            val userId = extras.getString(EXTRA_CHANNEL_USER_ID).toString()
+            val userId = extras.getInt(EXTRA_CHANNEL_USER_ID)
             val user = getUserEntity(userId)
 
             if (user != null) {
@@ -76,7 +79,32 @@ class ChannelActivity : AppCompatActivity() {
         }
     }
 
-    private fun getAndAddChatHistory(userId: String) {
+    private fun checkAndInitDB() {
+        try {
+            val userHelper = UserHelper.getInstance(applicationContext)
+            userHelper.open()
+
+            val isUserExist = userHelper.isUserExist()
+            if (!isUserExist) {
+                // show toast
+                Toast.makeText(this@ChannelActivity, "Initializing chat bot...", Toast.LENGTH_SHORT).show()
+
+                // if there is no user, init DB
+                val chatBot = UserEntity(
+                        nickname = "Chatbot",
+                        profileUrl = "https://icon-library.com/images/robot-flat-icon/robot-flat-icon-29.jpg",
+                        id = 0
+                )
+
+                userHelper.insertWithId(chatBot)
+            }
+        } catch (e: Exception) {
+            Toast.makeText(this@ChannelActivity, e.message, Toast.LENGTH_SHORT).show()
+            e.printStackTrace()
+        }
+    }
+
+    private fun getAndAddChatHistory(userId: Int) {
         try {
             val messageHelper = MessageHelper.getInstance(applicationContext)
             messageHelper.open()
@@ -91,7 +119,7 @@ class ChannelActivity : AppCompatActivity() {
         }
     }
 
-    private fun getUserEntity(userId: String) : UserEntity? {
+    private fun getUserEntity(userId: Int) : UserEntity? {
         return try {
             val userHelper = UserHelper.getInstance(applicationContext)
             userHelper.open()

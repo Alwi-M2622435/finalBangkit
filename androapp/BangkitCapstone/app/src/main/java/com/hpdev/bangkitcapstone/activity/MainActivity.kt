@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -53,7 +54,7 @@ class MainActivity : AppCompatActivity() {
                 true
             }
             R.id.menu3 -> {
-                // TODO: Logout user
+                Toast.makeText(this@MainActivity, "Log out feature isn't available yet.", Toast.LENGTH_SHORT).show()
                 println("Logging out...")
                 true
             }

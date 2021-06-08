@@ -12,7 +12,7 @@ class UserHelper(context: Context) {
     private lateinit var database: SQLiteDatabase
 
     companion object {
-        private const val DATABASE_TABLE = DatabaseContract.ChatHistoryColumns.TABLE_NAME
+        private const val DATABASE_TABLE = DatabaseContract.UserColumns.TABLE_NAME
 
         private var INSTANCE: UserHelper? = null
         fun getInstance(context: Context): UserHelper =
@@ -33,7 +33,7 @@ class UserHelper(context: Context) {
     }
 
     fun getAllData(): ArrayList<UserEntity> {
-        val cursor = database.query(DatabaseContract.UserColumns.TABLE_NAME, null, null, null, null, null, "${DatabaseContract.ChatHistoryColumns.CREATED_AT} ASC", null)
+        val cursor = database.query(DatabaseContract.UserColumns.TABLE_NAME, null, null, null, null, null, "${DatabaseContract.UserColumns._ID} ASC", null)
         cursor.moveToFirst()
         val userList = ArrayList<UserEntity>()
         var user: UserEntity
@@ -41,8 +41,8 @@ class UserHelper(context: Context) {
             do {
                 user = UserEntity(
                     id = cursor.getInt(cursor.getColumnIndexOrThrow(DatabaseContract.UserColumns._ID)),
-                    nickname = cursor.getString(cursor.getColumnIndexOrThrow(DatabaseContract.ChatHistoryColumns.NICKNAME)),
-                    profileUrl = cursor.getString(cursor.getColumnIndexOrThrow(DatabaseContract.ChatHistoryColumns.PROFILE_URL)),
+                    nickname = cursor.getString(cursor.getColumnIndexOrThrow(DatabaseContract.UserColumns.NICKNAME)),
+                    profileUrl = cursor.getString(cursor.getColumnIndexOrThrow(DatabaseContract.UserColumns.PROFILE_URL)),
                 )
                 userList.add(user)
                 cursor.moveToNext()
@@ -52,16 +52,16 @@ class UserHelper(context: Context) {
         return userList
     }
 
-    fun getByUserId(userId: String): UserEntity? {
-        val cursor = database.query(DatabaseContract.UserColumns.TABLE_NAME, null, null, null, null, null, "${DatabaseContract.ChatHistoryColumns.CREATED_AT} ASC", null)
+    fun getByUserId(userId: Int): UserEntity? {
+        val cursor = database.query(DatabaseContract.UserColumns.TABLE_NAME, null, "${DatabaseContract.UserColumns._ID} = ?", arrayOf(userId.toString()), null, null, "${DatabaseContract.UserColumns._ID} ASC", null)
         cursor.moveToFirst()
         var user: UserEntity? = null
         if (cursor.count > 0) {
             do {
                 user = UserEntity(
                     id = cursor.getInt(cursor.getColumnIndexOrThrow(DatabaseContract.UserColumns._ID)),
-                    nickname = cursor.getString(cursor.getColumnIndexOrThrow(DatabaseContract.ChatHistoryColumns.NICKNAME)),
-                    profileUrl = cursor.getString(cursor.getColumnIndexOrThrow(DatabaseContract.ChatHistoryColumns.PROFILE_URL)),
+                    nickname = cursor.getString(cursor.getColumnIndexOrThrow(DatabaseContract.UserColumns.NICKNAME)),
+                    profileUrl = cursor.getString(cursor.getColumnIndexOrThrow(DatabaseContract.UserColumns.PROFILE_URL)),
                 )
                 cursor.moveToNext()
             } while (!cursor.isAfterLast)
@@ -71,20 +71,36 @@ class UserHelper(context: Context) {
         return user
     }
 
-    fun queryByUserId(userId: String): Cursor {
-        return database.query(DATABASE_TABLE, null, "${DatabaseContract.ChatHistoryColumns.USER_ID} = ?", arrayOf(userId), null, null, null, null)
+    fun isUserExist(): Boolean {
+        val cursor = queryAll()
+        cursor.moveToFirst()
+
+        return (cursor.count > 0)
+    }
+
+    fun queryByUserId(userId: Int): Cursor {
+        return database.query(DATABASE_TABLE, null, "${DatabaseContract.UserColumns._ID} = ?", arrayOf(userId.toString()), null, null, null, null)
     }
 
     fun insert(user: UserEntity): Long {
         val initialValues = ContentValues()
-        initialValues.put(DatabaseContract.ChatHistoryColumns.NICKNAME, user.nickname)
-        initialValues.put(DatabaseContract.ChatHistoryColumns.PROFILE_URL, user.profileUrl)
+        initialValues.put(DatabaseContract.UserColumns.NICKNAME, user.nickname)
+        initialValues.put(DatabaseContract.UserColumns.PROFILE_URL, user.profileUrl)
 
-        return database.insert(DatabaseContract.ChatHistoryColumns.TABLE_NAME, null, initialValues)
+        return database.insert(DatabaseContract.UserColumns.TABLE_NAME, null, initialValues)
     }
 
-    fun deleteByUserId(userId: String): Int {
-        return database.delete(DATABASE_TABLE, "${DatabaseContract.ChatHistoryColumns.USER_ID} = '$userId'", null)
+    fun insertWithId(user: UserEntity): Long {
+        val initialValues = ContentValues()
+        initialValues.put(DatabaseContract.UserColumns._ID, user.id)
+        initialValues.put(DatabaseContract.UserColumns.NICKNAME, user.nickname)
+        initialValues.put(DatabaseContract.UserColumns.PROFILE_URL, user.profileUrl)
+
+        return database.insert(DatabaseContract.UserColumns.TABLE_NAME, null, initialValues)
+    }
+
+    fun deleteByUserId(userId: Int): Int {
+        return database.delete(DATABASE_TABLE, "${DatabaseContract.UserColumns._ID} = '$userId'", null)
     }
 
     fun queryAll(): Cursor {
@@ -95,14 +111,14 @@ class UserHelper(context: Context) {
             null,
             null,
             null,
-            "${DatabaseContract.ChatHistoryColumns.NICKNAME} ASC")
+            "${DatabaseContract.UserColumns.NICKNAME} ASC")
     }
 
     fun insert(values: ContentValues?): Long {
         return database.insert(DATABASE_TABLE, null, values)
     }
 
-    fun update(id: String, values: ContentValues?): Int {
-        return database.update(DATABASE_TABLE, values, "${DatabaseContract.ChatHistoryColumns.USER_ID} = ?", arrayOf(id))
+    fun update(id: Int, values: ContentValues?): Int {
+        return database.update(DATABASE_TABLE, values, "${DatabaseContract.UserColumns._ID} = ?", arrayOf(id.toString()))
     }
 }
