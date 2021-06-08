@@ -2,13 +2,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <group android:menuCategory="container">
-        <item android:id="@+id/menu1"
-            android:title="@string/menu_1"
-            android:icon = "@drawable/ic_baseline_chat_bubble_24"
-            app:showAsAction="always" />
         <item android:id="@+id/menu2"
             android:title="@string/menu_2"
-            android:icon = "@drawable/ic_notifications_black_24dp"
+            android:icon = "@drawable/ic_baseline_notifications_24_white"
             app:showAsAction="ifRoom" />
         <item android:id="@+id/menu3"
             android:title="@string/menu_2" />

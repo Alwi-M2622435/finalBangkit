@@ -51,7 +51,7 @@ class MessageHelper(context: Context) {
                     createdAt = cursor.getLong(cursor.getColumnIndexOrThrow(CREATED_AT)),
                     type = cursor.getInt(cursor.getColumnIndexOrThrow(TYPE)),
 
-                    userId = cursor.getString(cursor.getColumnIndexOrThrow(USER_ID)),
+                    userId = cursor.getInt(cursor.getColumnIndexOrThrow(USER_ID)),
                     nickname = cursor.getString(cursor.getColumnIndexOrThrow(NICKNAME)),
                     profileUrl = cursor.getString(cursor.getColumnIndexOrThrow(PROFILE_URL)),
                 )
@@ -63,8 +63,8 @@ class MessageHelper(context: Context) {
         return messageList
     }
 
-    fun getByUserId(userId: String): ArrayList<MessageEntity> {
-        val cursor = database.query(TABLE_NAME, null, "$USER_ID = ?", arrayOf(userId), null, null, "$CREATED_AT ASC", null)
+    fun getByUserId(userId: Int): ArrayList<MessageEntity> {
+        val cursor = database.query(TABLE_NAME, null, "$USER_ID = ?", arrayOf(userId.toString()), null, null, "$CREATED_AT ASC", null)
         cursor.moveToFirst()
         val messageList = ArrayList<MessageEntity>()
         var message: MessageEntity
@@ -75,7 +75,7 @@ class MessageHelper(context: Context) {
                     createdAt = cursor.getLong(cursor.getColumnIndexOrThrow(CREATED_AT)),
                     type = cursor.getInt(cursor.getColumnIndexOrThrow(TYPE)),
 
-                    userId = cursor.getString(cursor.getColumnIndexOrThrow(USER_ID)),
+                    userId = cursor.getInt(cursor.getColumnIndexOrThrow(USER_ID)),
                     nickname = cursor.getString(cursor.getColumnIndexOrThrow(NICKNAME)),
                     profileUrl = cursor.getString(cursor.getColumnIndexOrThrow(PROFILE_URL)),
                 )

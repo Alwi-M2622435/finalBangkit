@@ -11,7 +11,7 @@ import com.hpdev.bangkitcapstone.db.DatabaseContract.UserColumns
 class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
     companion object {
-        private const val DATABASE_NAME = "dbgithubuser"
+        private const val DATABASE_NAME = "dbbangkitchatbot"
         private const val DATABASE_VERSION = 1
         private const val SQL_CREATE_TABLE_CHAT_HISTORY = "CREATE TABLE ${ChatHistoryColumns.TABLE_NAME}" +
                 " (${BaseColumns._ID} INTEGER PRIMARY KEY AUTOINCREMENT," +
