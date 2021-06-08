@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.hpdev.bangkitcapstone.R
 import com.hpdev.bangkitcapstone.data.MenuEntity
 import com.hpdev.bangkitcapstone.ui.messages.ChannelActivity
@@ -37,6 +38,16 @@ class MainActivity : AppCompatActivity() {
         rv.layoutManager = GridLayoutManager(this, 2)
 
         getData()
+
+        val fab = findViewById<FloatingActionButton>(R.id.fab)
+        fab.setOnClickListener {
+            val i = Intent(this@MainActivity, ChannelActivity::class.java)
+                .apply {
+                    putExtra(ChannelActivity.EXTRA_CHANNEL_USER_ID, ChannelActivity.CHATBOT_USER_ID)
+                }
+            // start activity, to chatbot page
+            startActivity(i)
+        }
     }
 
     private fun getData() {
@@ -78,12 +89,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-//            R.id.menu1 -> {
-//                val i = Intent(this, ChannelActivity::class.java)
-//                i.putExtra(ChannelActivity.EXTRA_CHANNEL_USER_ID, ChannelActivity.CHATBOT_USER_ID)
-//                startActivity(i)
-//                true
-//            }
             R.id.menu2 -> {
                 val i = Intent(this, NotificationsActivity::class.java)
                 startActivity(i)
