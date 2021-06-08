@@ -99,15 +99,15 @@ tf.compat.v1.reset_default_graph() #reset graph
 
 # model versi keras
 model = tf.keras.models.Sequential([
+    #input layer
     tf.keras.layers.Dense(units=128, input_shape=(len(train_x[0]),), activation='relu'),
     tf.keras.layers.Dropout(0.5),
-    tf.keras.layers.Dense(units=64, activation='relu'),
+    tf.keras.layers.Dense(units=64, activation='relu'), #First hidden layer
     tf.keras.layers.Dropout(0.5),
-    tf.keras.layers.Dense(units=32, activation='relu'),
+    tf.keras.layers.Dense(units=32, activation='relu'), #second hidden layer
     tf.keras.layers.Dropout(0.5),
-    tf.keras.layers.Dense(units=len(train_y[0]), activation='softmax')
+    tf.keras.layers.Dense(units=len(train_y[0]), activation='softmax') #output layer
 ])
-
 sgd = SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True)
 model.compile(loss='categorical_crossentropy', optimizer=sgd, metrics=['accuracy'])
 hist = model.fit(tf.constant(train_x), tf.constant(train_y),
@@ -121,7 +121,6 @@ import pathlib
 
 tf.saved_model.save(model, '/tmp/saved_model/1/')  # will be saved in dick C
 
-# import tensorflow.keras.backend
 # Convert the model.
 converter = tf.lite.TFLiteConverter.from_saved_model('/tmp/saved_model/1/')  # path to the SavedModel directory
 converter.optimizations = [tf.lite.Optimize.DEFAULT]
