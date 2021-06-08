@@ -24,4 +24,6 @@
     <string name="send_message">Send</string>
     <string name="text_time2">10:00</string>
     <string name="text_example_message">This is a Message</string>
+    <string name="dashboard_title">Mental Health Assistant</string>
+    <string name="menu_image">Image for Menu Dashboard</string>
 </resources>

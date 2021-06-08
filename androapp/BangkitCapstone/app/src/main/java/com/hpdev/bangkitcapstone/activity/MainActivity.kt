@@ -32,10 +32,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getData() {
-        imageList.add(ImageEntity(image = R.drawable.ic_baseline_chat_bubble_24))
-        imageList.add(ImageEntity(image = R.drawable.ic_baseline_supervised_user_circle_24))
-        imageList.add(ImageEntity(image = R.drawable.ic_baseline_forum_24))
-        imageList.add(ImageEntity(image = R.drawable.ic_baseline_house_siding_24))
+        imageList.add(ImageEntity(image = R.drawable.menu_chatbot))
+        imageList.add(ImageEntity(image = R.drawable.menu_forum))
+        imageList.add(ImageEntity(image = R.drawable.menu_psycholog))
+        imageList.add(ImageEntity(image = R.drawable.menu_info))
 
         adapter = MenuAdapter(imageList, this)
         rv.adapter = adapter

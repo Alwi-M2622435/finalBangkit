@@ -11,7 +11,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.hpdev.bangkitcapstone.R
 import com.hpdev.bangkitcapstone.data.ImageEntity
 
-class MenuAdapter(val imageList: List<ImageEntity>, val ct: Context) :
+class MenuAdapter(private val imageList: List<ImageEntity>, private val ct: Context) :
     RecyclerView.Adapter<MenuAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
