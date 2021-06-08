@@ -64,8 +64,14 @@ class ChannelActivity : AppCompatActivity() {
                     // add message entity to message list
                     messageList.add(message)
 
+                    // add message to adapter
+                    adapter.setMessages(messageList)
+
                     // save message to database
                     saveMessageToHistory(message)
+
+                    // reset edit text
+                    binding.editGchatMessage.text = null
                 }
             } else {
                 // back to prev activity
@@ -120,16 +126,19 @@ class ChannelActivity : AppCompatActivity() {
     }
 
     private fun getUserEntity(userId: Int) : UserEntity? {
-        return try {
+        try {
             val userHelper = UserHelper.getInstance(applicationContext)
             userHelper.open()
 
-            userHelper.getByUserId(userId)
+            val user = userHelper.getByUserId(userId)
+            userHelper.close()
+
+            return user
         } catch (e: Exception) {
             Toast.makeText(this@ChannelActivity, e.message, Toast.LENGTH_SHORT).show()
             e.printStackTrace()
 
-            null
+            return null
         }
     }
 
