@@ -12,8 +12,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BangkitCapstone">
-        <activity android:name=".ui.messages.ChannelActivity" />
-        <activity android:name=".ui.messages.MessagesActivity" />
+        <activity
+            android:name=".ui.professional.ProfessionalActivity"
+            android:label="Psikolog di Dekatmu"
+            />
+        <activity android:name=".ui.info.InfoActivity"
+            android:label="Informasi Terpadu"
+            />
+        <activity android:name=".ui.forum.ForumActivity"
+            android:label="Forum Anonim"
+            />
+        <activity android:name=".ui.channel.ChannelActivity" />
         <activity android:name=".ui.notifications.NotificationsActivity" />
         <activity
             android:name=".activity.MainActivity"

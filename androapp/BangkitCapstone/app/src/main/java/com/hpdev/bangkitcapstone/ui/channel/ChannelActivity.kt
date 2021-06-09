@@ -1,4 +1,4 @@
-package com.hpdev.bangkitcapstone.ui.messages
+package com.hpdev.bangkitcapstone.ui.channel
 
 import android.os.Bundle
 import android.widget.Toast
@@ -12,6 +12,7 @@ import com.hpdev.bangkitcapstone.data.remote.ResponseChatbot
 import com.hpdev.bangkitcapstone.databinding.ActivityChannelBinding
 import com.hpdev.bangkitcapstone.db.MessageHelper
 import com.hpdev.bangkitcapstone.db.UserHelper
+import com.hpdev.bangkitcapstone.ui.messages.MessageListAdapter
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

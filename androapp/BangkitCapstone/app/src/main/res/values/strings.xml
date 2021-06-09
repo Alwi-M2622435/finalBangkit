@@ -26,4 +26,5 @@
     <string name="text_example_message">This is a Message</string>
     <string name="dashboard_title">Mental Health Assistant</string>
     <string name="menu_image">Image for Menu Dashboard</string>
+    <string name="like_button">590</string>
 </resources>

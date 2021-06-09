@@ -18,7 +18,7 @@ class MenuAdapter(private val menuList: List<MenuEntity>, private val ct: Contex
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view: View =
-            LayoutInflater.from(parent.context).inflate(R.layout.dashboard_list, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.item_dashboard, parent, false)
         return ViewHolder(view)
     }
 

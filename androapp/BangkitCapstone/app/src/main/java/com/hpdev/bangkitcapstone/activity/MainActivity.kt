@@ -12,8 +12,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.hpdev.bangkitcapstone.R
 import com.hpdev.bangkitcapstone.data.MenuEntity
-import com.hpdev.bangkitcapstone.ui.messages.ChannelActivity
+import com.hpdev.bangkitcapstone.ui.channel.ChannelActivity
+import com.hpdev.bangkitcapstone.ui.forum.ForumActivity
+import com.hpdev.bangkitcapstone.ui.info.InfoActivity
 import com.hpdev.bangkitcapstone.ui.notifications.NotificationsActivity
+import com.hpdev.bangkitcapstone.ui.professional.ProfessionalActivity
 
 
 class MainActivity : AppCompatActivity() {
@@ -27,6 +30,8 @@ class MainActivity : AppCompatActivity() {
         const val MENU_FORUM = "menu_forum"
         const val MENU_PSYCHOLOG = "menu_psycholog"
         const val MENU_INFO = "menu_info"
+        const val MENU_PROFILE = "menu_profile"
+        const val MENU_SETTINGS = "menu_settings"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,6 +60,8 @@ class MainActivity : AppCompatActivity() {
         imageList.add(MenuEntity(image = R.drawable.menu_forum, type = MENU_FORUM))
         imageList.add(MenuEntity(image = R.drawable.menu_psycholog, type = MENU_PSYCHOLOG))
         imageList.add(MenuEntity(image = R.drawable.menu_info, type = MENU_INFO))
+        imageList.add(MenuEntity(image = R.drawable.menu_profile, type = MENU_PROFILE))
+        imageList.add(MenuEntity(image = R.drawable.menu_settings, type = MENU_SETTINGS))
 
         adapter = MenuAdapter(imageList, this)
         rv.adapter = adapter
@@ -69,6 +76,24 @@ class MainActivity : AppCompatActivity() {
                                     putExtra(ChannelActivity.EXTRA_CHANNEL_USER_ID, ChannelActivity.CHATBOT_USER_ID)
                                 }
                             // start activity, to chatbot page
+                            startActivity(i)
+                        }
+                        MENU_FORUM -> {
+                            val i = Intent(this@MainActivity, ForumActivity::class.java)
+
+                            // start activity, to forum page
+                            startActivity(i)
+                        }
+                        MENU_PSYCHOLOG -> {
+                            val i = Intent(this@MainActivity, ProfessionalActivity::class.java)
+
+                            // start activity, to professional page
+                            startActivity(i)
+                        }
+                        MENU_INFO -> {
+                            val i = Intent(this@MainActivity, InfoActivity::class.java)
+
+                            // start activity, to info page
                             startActivity(i)
                         }
                         else -> {
